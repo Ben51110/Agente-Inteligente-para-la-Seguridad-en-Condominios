@@ -18,4 +18,28 @@ Ampliamos la base de datos de rostros con imágenes de bases de datos públicas 
 
 - Emitir alertas inteligentes al personal de seguridad o residentes mediante un sistema de notificación.
 
-4. 
+4. Arquitectura del agente o sistema:
+
+La arquitectura del sistema del agente inteligente de seguridad esta organizado en distintas partes, la primera es la parte de la captura de rostro por el cual el agente funciona con un modulo de percepcion segun el cual recibe y procesa informacion del entorna via las camaras y sensores.
+
+La segunda parte del agente es el algoritmo del reconocimiento facial que funciona con YOLO y captura rostro para comparar con la base de datos.
+
+El entrenamiento del agente se hace en Robotflow con rostros y datos pre entrenados.
+
+Finalmente se guarda en un archivo Excel los reconocimientos del agente con el nombre y la hora de la deteccion.
+
+6. Algoritmo de Machine Learning utilizado y su justificación:
+
+7. Tecnologías y librerías empleadas:
+
+8. Instrucciones claras para instalar dependencias y ejecutar el proyecto:
+
+9. Parámetros principales de entrenamiento y métricas de evaluación:
+
+10. Resultados obtenidos y breve discusión:
+
+11. Conclusiones principales:
+
+12. Referencias si se usaron recursos externos:
+
+
