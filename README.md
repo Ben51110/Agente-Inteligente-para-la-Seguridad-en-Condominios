@@ -240,10 +240,10 @@ Entrenamiento (70%): El modelo se entrena con estas imágenes para aprender a id
 Una vez que las imágenes están anotadas y la base de datos está dividida, Roboflow nos permite entrenar un modelo de YOLO para la detección de objetos. En este caso, el modelo YOLOv8 es ideal para este tipo de tarea debido a su eficiencia y rapidez en la detección de objetos en imágenes en tiempo real. Después de entrenar el modelo, Roboflow nos da un archivo con los pesos del modelo (por ejemplo, best.pt), que es lo que luego cargamos en nuestro código para hacer predicciones sobre nuevas imágenes o videos.
 
 
-10. Resultados obtenidos y breve discusión:
+9. Resultados obtenidos y breve discusión:
 
-11. Conclusiones principales:
+10. Conclusiones principales:
 
-12. Referencias si se usaron recursos externos:
+11. Referencias si se usaron recursos externos:
 
 
