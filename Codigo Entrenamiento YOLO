@@ -1,0 +1,71 @@
+import cv2
+import os
+import numpy as np
+from ultralytics import YOLO
+
+# Ruta al dataset donde están almacenadas las imágenes de las personas
+dataPath = r'D:\\uwu\\diplomado\\proyecto\\Data'
+
+# Lista de las personas (subdirectorios) en el dataset
+peopleList = os.listdir(dataPath)
+print('Lista de personas:', peopleList)
+
+# Cargar el modelo YOLOv8 preentrenado
+model = YOLO('yolov8n.pt')
+
+# Inicializamos listas para almacenar los datos de los rostros y las etiquetas
+labels = []
+facesData = []
+label = 0  # Etiqueta para cada persona
+
+# Para cada persona en el dataset
+for nameDir in peopleList:
+    personPath = os.path.join(dataPath, nameDir)
+    print(f'\nProcesando imágenes de: {nameDir}')
+
+    # Recorremos todas las imágenes de la persona
+    for fileName in os.listdir(personPath):
+        imagePath = os.path.join(personPath, fileName)
+        print('Imagen:', imagePath)
+
+        # Cargar la imagen
+        img = cv2.imread(imagePath)
+        if img is None:
+            print(f"Error al leer la imagen: {imagePath}")
+            continue  # Si la imagen no se puede leer, pasamos a la siguiente
+
+        # Detectar rostros con el modelo YOLO
+        results = model(img)  # Realizamos la detección de objetos (rostros) en la imagen
+        boxes = results[0].boxes.xyxy.cpu().numpy()  # Extraemos las coordenadas de los rostros detectados
+
+        # Procesamos cada rostro detectado
+        for box in boxes:
+            x1, y1, x2, y2 = map(int, box)  # Extraemos las coordenadas de la caja delimitadora (bounding box)
+            face = img[y1:y2, x1:x2]  # Recortamos la imagen para obtener solo el rostro
+
+            # Si no se ha detectado un rostro (por algún error en el recorte), lo ignoramos
+            if face.size == 0:
+                continue
+
+            # Convertimos la imagen del rostro a escala de grises
+            gray_face = cv2.cvtColor(face, cv2.COLOR_BGR2GRAY)
+
+            # Redimensionamos el rostro a 150x150 píxeles para que el modelo LBPH pueda procesarlo
+            resized_face = cv2.resize(gray_face, (150, 150), interpolation=cv2.INTER_CUBIC)
+
+            # Almacenamos el rostro procesado y su etiqueta (persona)
+            facesData.append(resized_face)
+            labels.append(label)  # La etiqueta corresponde al índice de la persona
+            print(f"✔ Rostro detectado en {fileName}")
+
+    # Aumentamos la etiqueta para la siguiente persona
+    label += 1
+
+# Entrenar el modelo LBPH con los rostros y etiquetas recolectados
+print("\nEntrenando el modelo LBPH...")
+face_recognizer = cv2.face.LBPHFaceRecognizer_create()
+face_recognizer.train(facesData, np.array(labels))  # Entrenamos el modelo
+
+# Guardamos el modelo entrenado en un archivo XML
+face_recognizer.write('modeloLBPHFaceYOLO.xml')
+print("✅ Modelo LBPH guardado como 'modeloLBPHFaceYOLO.xml'")
