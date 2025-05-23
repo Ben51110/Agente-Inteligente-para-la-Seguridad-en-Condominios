@@ -1,0 +1,63 @@
+import cv2
+import os
+import imutils
+from ultralytics import YOLO
+
+# Nombre de la persona y la ruta donde se guardarán las imágenes
+personName = 'Nelson2'  # Cambiar el nombre de la persona si es necesario
+dataPath = 'Data'  # Cambia a la ruta donde hayas almacenado la carpeta 'Data'
+personPath = os.path.join(dataPath, personName)  # Crear la ruta completa para la carpeta de la persona
+
+# Crear la carpeta de la persona si no existe
+if not os.path.exists(personPath):
+    print('Carpeta creada: ', personPath)
+    os.makedirs(personPath)
+
+# Cargar el modelo YOLO preentrenado para detección de rostros
+# Si tienes un modelo específico para rostros, usa 'yolov8-face.pt'
+model = YOLO('yolov8n.pt')  # Modelo YOLOv8
+
+# Iniciar la captura de video desde la cámara
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)  # Puedes cambiar 0 por una ruta de video si lo deseas
+count = 0  # Contador de las imágenes capturadas
+
+while True:
+    ret, frame = cap.read()  # Leer un fotograma desde la cámara
+    if not ret:
+        break  # Si no se puede leer el fotograma, salir del bucle
+
+    # Redimensionar el fotograma para mejorar el rendimiento
+    frame = imutils.resize(frame, width=640)
+
+    # Detectar rostros con YOLO
+    results = model(frame)  # Detecta objetos en la imagen (rostros, personas, etc.)
+    
+    # Filtrar solo las detecciones de rostros (si tu modelo YOLO está entrenado para ello)
+    faces = results[0].boxes.xyxy.cpu().numpy()
+
+    for face in faces:
+        # Obtener las coordenadas de la caja delimitadora del rostro detectado
+        x1, y1, x2, y2 = map(int, face)  # Coordenadas del rostro detectado
+
+        # Dibujar un rectángulo alrededor del rostro detectado
+        cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)  # Rectángulo verde
+
+        # Recortar el rostro de la imagen original
+        rostro = frame[y1:y2, x1:x2]
+        rostro = cv2.resize(rostro, (150, 150), interpolation=cv2.INTER_CUBIC)  # Redimensionar rostro a 150x150 píxeles
+
+        # Guardar la imagen recortada del rostro en la carpeta de la persona
+        cv2.imwrite(os.path.join(personPath, f'rostro_{count}.jpg'), rostro)  # Guardar imagen recortada
+        count += 1  # Incrementar el contador de imágenes
+
+    # Mostrar el fotograma con los rostros detectados
+    cv2.imshow('frame', frame)
+
+    # Salir si se presiona la tecla 'Esc' o si se alcanza el límite de 300 imágenes
+    k = cv2.waitKey(1)  # Espera por 1 ms
+    if k == 27 or count >= 300:  # Código ASCII para la tecla 'Esc'
+        break
+
+# Liberar la captura de video y cerrar las ventanas
+cap.release()
+cv2.destroyAllWindows()
