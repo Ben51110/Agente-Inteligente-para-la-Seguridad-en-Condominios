@@ -210,7 +210,7 @@ Resumen de Tecnologías y Librerías Empleadas:
 
 Para ejecutar el proyecto deberia tener instaladas las liberias utilizadas y el modelo en local con la base de datos compilada en Roboflow.
 
-9. Parámetros principales de entrenamiento y métricas de evaluación:
+8. Parámetros principales de entrenamiento y métricas de evaluación:
 
 Entrenamiento de YOLO para Reconocimiento Facial con Roboflow:
 
@@ -239,13 +239,19 @@ Entrenamiento (70%): El modelo se entrena con estas imágenes para aprender a id
 
 - 4) Entrenamiento del Modelo con YOLO:
 
-Una vez que las imágenes están anotadas y la base de datos está dividida, Roboflow nos permite entrenar un modelo de YOLO para la detección de objetos. En este caso, el modelo YOLOv8 es ideal para este tipo de tarea debido a su eficiencia y rapidez en la detección de objetos en imágenes en tiempo real. Después de entrenar el modelo, Roboflow nos da un archivo con los pesos del modelo (por ejemplo, best.pt), que es lo que luego cargamos en nuestro código para hacer predicciones sobre nuevas imágenes o videos.
+Una vez que las imágenes están anotadas y la base de datos está dividida, Roboflow nos permite entrenar un modelo de YOLO para la detección de objetos. En este caso, el modelo YOLOv8 es ideal para este tipo de tarea debido a su eficiencia y rapidez en la detección de objetos en imágenes en tiempo real. Después de entrenar el modelo, Roboflow nos da un archivo con los pesos del modelo (por ejemplo, best.pt), que es lo que luego cargamos en nuestro código para hacer predicciones sobre nuevas imágenes o videos. 
 
 
 9. Resultados obtenidos y breve discusión:
 
+En este proyecto de reconocimiento facial, hemos explorado e implementado una solución basada en el modelo YOLOv8 para detectar y reconocer rostros en tiempo real utilizando una cámara. Sin embargo, durante las pruebas iniciales, nos encontramos con algunas dificultades relacionadas con el reconocimiento preciso de los rostros, especialmente cuando intentábamos reconocer nuestros propios rostros al utilizar el programa directamente con nuestras cabezas frente a la cámara. De hecho, el reconocimiento facial en tiempo real, cuando se aplica directamente a los rostros de las personas, sigue siendo un desafío complejo debido a diversos factores. Entre los principales problemas que afectan la precisión del modelo se incluyen las variaciones en las condiciones de iluminación, los ángulos de visión, las expresiones faciales cambiantes, así como la calidad de la cámara utilizada. Como resultado, el modelo de detección facial, aunque efectivo en muchas circunstancias, muestra ciertas limitaciones cuando se enfrenta a estos factores. No obstante, el entrenamiento del modelo utilizando una base de datos de Roboflow ha permitido mejorar significativamente la precisión del sistema. Gracias al entrenamiento con una base de datos bien estructurada y diversa, hemos logrado obtener una precisión media por clase que oscila entre el 96% y el 100%. Esto demuestra que, cuando el modelo se entrena con una base de datos optimizada y se ajusta correctamente a las condiciones de los rostros que se espera reconocer, el rendimiento del sistema puede ser extremadamente alto.
+
+
 10. Conclusiones principales:
+
+En resumen, aunque la implementación directa con rostros individuales en condiciones no controladas presenta algunos desafíos, el uso de una base de datos de Roboflow ha permitido mejorar considerablemente la precisión del modelo. Esto sugiere que, con un entrenamiento adecuado y una base de datos bien gestionada, los sistemas de reconocimiento facial pueden ofrecer un rendimiento sobresaliente en aplicaciones más controladas y específicas.
+
 
 11. Referencias si se usaron recursos externos:
 
-
+OpenAI.
