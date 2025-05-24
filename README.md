@@ -30,6 +30,7 @@ La arquitectura del sistema del agente inteligente de seguridad esta organizado 
 5. Algoritmo de Machine Learning utilizado y su justificación:
 
 - 1) YOLOv8 (You Only Look Once) - Detección de Objetos
+  
 Tipo de algoritmo: Algoritmo de Deep Learning (Específicamente, una red neuronal convolucional de detección de objetos)
 
 Descripción:
