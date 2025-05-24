@@ -8,7 +8,7 @@ Este proyecto consiste en el diseño y desarrollo de un agente inteligente de se
 
 2. Estado del arte breve: 
 
-Ampliamos la base de datos de rostros con imágenes de bases de datos públicas de personas conocidas y entrenamos el modelo mediante Robotflow utilizando cientos de fotos para cada rostro. Para entrenar el modelo, dividimos la base de datos de cada rostro en 70% para entrenamiento, 20% para validación y 10% para pruebas.
+Ampliamos la base de datos de rostros con imágenes de bases de datos públicas de personas conocidas y entrenamos el modelo mediante Roboflow utilizando cientos de fotos para cada rostro. Para entrenar el modelo, dividimos la base de datos de cada rostro en 70% para entrenamiento, 20% para validación y 10% para pruebas.
 
 
 3. Objetivos del proyecto:
