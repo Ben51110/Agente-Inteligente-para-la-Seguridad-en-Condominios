@@ -46,7 +46,7 @@ Precisión: Es eficaz para detectar y clasificar múltiples objetos en una sola 
 Aplicación en este código: En el código, se utiliza YOLOv8 para detectar personas en un flujo de video en tiempo real, lo cual es esencial para la tarea de monitoreo y registro de personas.
 
 - 2) LBPH (Local Binary Pattern Histogram) - Reconocimiento Facial
-  3) 
+
 Tipo de algoritmo: Algoritmo de Machine Learning supervisado para reconocimiento facial.
 
 Descripción:
