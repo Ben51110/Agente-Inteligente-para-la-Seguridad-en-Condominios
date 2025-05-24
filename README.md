@@ -208,7 +208,9 @@ Resumen de Tecnologías y Librerías Empleadas:
 
 7. Instrucciones claras para instalar dependencias y ejecutar el proyecto:
 
-8. Parámetros principales de entrenamiento y métricas de evaluación:
+Para ejecutar el proyecto deberia tener instaladas las liberias utilizadas y el modelo en local con la base de datos compilada en Roboflow.
+
+9. Parámetros principales de entrenamiento y métricas de evaluación:
 
 Entrenamiento de YOLO para Reconocimiento Facial con Roboflow:
 
