@@ -1,0 +1,5 @@
+Si se tiene Grafica con núcleos Cuda Usar:
+yolo task=detect mode=train model=yolov8n.pt data="ruta del dataset data.yalm" epochs=50 imgsz=640 device=0
+
+si se quiere usar solo procesador usar:
+yolo task=detect mode=train model=yolov8n.pt data="ruta del dataset data.yaml" epochs=50 imgsz=640
